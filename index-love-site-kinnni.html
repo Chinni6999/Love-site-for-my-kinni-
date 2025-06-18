@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>For My Kinni 💖</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to top right, #ffdde1, #ee9ca7);
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-top: 1em;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+        p {
+            font-size: 1.3em;
+            margin: 0.5em;
+            animation: fadeIn 4s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: float 10s linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+        @keyframes float {
+            0% {
+                bottom: -10%;
+                opacity: 0;
+                transform: translateX(0) rotate(45deg);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                bottom: 110%;
+                transform: translateX(50px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>For My Sweet Kinni 💖</h1>
+    <p>You are my everything.</p>
+    <p>My world begins and ends with you.</p>
+    <p>In every language, I love you.</p>
+    <p>Your smile is my sunshine.</p>
+    <p>Forever isn't enough with you.</p>
+    <p>I thank the stars every night for you.</p>
+
+    <audio autoplay loop hidden>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
