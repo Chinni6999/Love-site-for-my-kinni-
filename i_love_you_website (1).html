@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Love You</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: black;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      padding-top: 15vh;
+      padding-left: 5vw;
+      padding-right: 5vw;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      font-size: 5vw;
+      color: white;
+      background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 20px #ff0080;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .message {
+      margin-top: 40px;
+      font-size: 5vw;
+      white-space: pre-line;
+      animation: colorChange 3s infinite linear, fadeIn 2s ease-in-out;
+      display: none;
+    }
+
+    @keyframes colorChange {
+      0% { color: #ff0080; }
+      25% { color: #ff8c00; }
+      50% { color: #40e0d0; }
+      75% { color: #00ff95; }
+      100% { color: #ff0080; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff69b4;
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff69b4;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <button class="btn" onclick="startLove()">Click Me</button>
+    <div class="message" id="loveMessage">
+      I love you 💖
+      You are my everything 💫
+      My heart beats for you 💓
+      You're the light in my life 🌟
+      My soulmate, my sunshine ☀️
+      I’m grateful for you every day 🙏
+      Forever and always, it’s you 💍
+      No one compares to you 💎
+      You complete me 🧩
+      My love for you is endless ♾️
+    </div>
+  </div>
+
+  <div class="hearts" id="heartsContainer"></div>
+
+  <script>
+    function startLove() {
+      const audio = document.getElementById("bgMusic");
+      audio.play().catch(() => console.log("Autoplay failed — user interaction needed."));
+      document.getElementById("loveMessage").style.display = "block";
+    }
+
+    // Floating hearts animation
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      document.getElementById('heartsContainer').appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
